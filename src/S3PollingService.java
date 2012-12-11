@@ -1,10 +1,12 @@
 
 public class S3PollingService implements Runnable {
 
+    private S3LocalDrive drive;
     private boolean terminated = false;
     private S3Client s3;
     
-    public S3PollingService() {
+    public S3PollingService(S3LocalDrive drive) {
+        this.drive = drive;
         s3 = S3Client.getInstance();
     }
     

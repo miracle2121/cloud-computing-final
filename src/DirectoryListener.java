@@ -3,6 +3,12 @@ import net.contentobjects.jnotify.JNotifyListener;
 
 public class DirectoryListener implements JNotifyListener {
     
+    private S3LocalDrive drive;
+    
+    public DirectoryListener(S3LocalDrive drive) {
+        this.drive = drive;
+    }
+    
     @Override
     public void fileCreated(int wd, String rootPath, String name) {
         // TODO Auto-generated method stub
