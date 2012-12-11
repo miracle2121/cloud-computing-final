@@ -4,9 +4,11 @@ import net.contentobjects.jnotify.JNotifyListener;
 public class DirectoryListener implements JNotifyListener {
     
     private S3LocalDrive drive;
+    private S3Client s3;
     
     public DirectoryListener(S3LocalDrive drive) {
         this.drive = drive;
+        s3 = S3Client.getInstance();
     }
     
     @Override
