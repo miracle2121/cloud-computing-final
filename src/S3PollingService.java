@@ -41,24 +41,24 @@ public class S3PollingService implements Runnable {
             for (S3ObjectSummary summary : summaries) {
                 String key = summary.getKey();
                 s3FileNames.add(key);
-                if (!drive.hasFileName(driveDir + "/" + key)) {
+                if (!drive.hasFileName(driveDir + File.separator + key)) {
                     String modId = key.endsWith("/") ? key.substring(0, key.length() - 1) : key;
                     addModificationFromS3(modId);
                     s3.saveFile(bucketName, key, driveDir);
-                    String absolutePath = driveDir + "/" + key;
+                    String absolutePath = driveDir + File.separator + key;
                     drive.addFileName(absolutePath);
                     System.out.println("Found file on S3: " + key + ", downloading.");
                 }
             }
             Set<String> localFileNames = drive.getFileNames();
             for (String fileName : localFileNames) {
-                String key = fileName.replace(driveDir + "/", "");
+                String key = fileName.replace(driveDir + File.separator, "");
                 if (!s3FileNames.contains(key)) {
                     String modId = key.endsWith("/") ? key.substring(0, key.length() - 1) : key;
                     addModificationFromS3(modId);
                     File fileToDelete = new File(fileName);
                     fileToDelete.delete();
-                    String absolutePath = driveDir + "/" + key;
+                    String absolutePath = driveDir + File.separator + key;
                     drive.removeFileName(absolutePath);
                     System.out.println("Cannot find file on S3: " + key + ", deleted local file.");
                 }

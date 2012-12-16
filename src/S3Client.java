@@ -55,7 +55,7 @@ public class S3Client {
     public void saveFile(String bucketName, String key, String dir) {
         try {
             S3Object obj = s3.getObject(bucketName, key);
-            String filePath = dir + "/" + obj.getKey();
+            String filePath = dir + File.separator + obj.getKey();
             File newFile = new File(filePath);
             if (filePath.endsWith("/")) {
                 newFile.mkdir();

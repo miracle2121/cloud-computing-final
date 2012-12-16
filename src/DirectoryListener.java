@@ -15,7 +15,7 @@ public class DirectoryListener implements JNotifyListener {
     }
     
     private void uploadFile(String rootPath, String name) {
-        String absolutePath = rootPath + "/" + name;
+        String absolutePath = rootPath + File.separator + name;
         File file = new File(absolutePath);
         if (file.isDirectory()) {
             try {
@@ -30,7 +30,7 @@ public class DirectoryListener implements JNotifyListener {
     }
     
     private void deleteFile(String rootPath, String name) {
-        String absolutePath = rootPath + "/" + name;
+        String absolutePath = rootPath + File.separator + name;
         File file = new File(absolutePath);
         if (file.isDirectory()) {
             name += "/";
@@ -40,8 +40,8 @@ public class DirectoryListener implements JNotifyListener {
     }
     
     private void renameFile(String rootPath, String oldName, String newName) {
-        String newAbsolutePath = rootPath + "/" + newName;
-        String oldAbsolutePath = rootPath + "/" + oldName;
+        String newAbsolutePath = rootPath + File.separator + newName;
+        String oldAbsolutePath = rootPath + File.separator + oldName;
         File newFile = new File(newAbsolutePath);
         if (newFile.isDirectory()) {
             try {
